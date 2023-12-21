@@ -1,0 +1,8 @@
+- Why languages
+- Compiler vs interpreter (partially run programs in the latter one)
+- Why is js better than other languages
+- Strict vs dynamic/loosely languages
+- Single threaded, non-blocking nature of js
+- Primitive types in js 
+- Conditions, loops and functions
+- Callback functions 
