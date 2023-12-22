@@ -1,0 +1,11 @@
+Level 1
+- String methods
+- Array methods
+
+Level 2
+- Classes 
+    - static methods
+- Date Class
+- JSON
+- Math object
+- Object methods
