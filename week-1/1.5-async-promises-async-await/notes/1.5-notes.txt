@@ -23,4 +23,18 @@
     - a promise is an object that is returned by an async function, which represents the current state of the operation. 
     - when a caller calls an async function, the async function returns a promise to the caller, where the operation may or may not be finished (not, in most cases).
     - the promise object, though, has multiple methods that can handle the eventual success or failure of the operation.
+    - fetch(), then(), json() - all are async in nature.
+
+    - fetch()
+        - it's an web API for making http requests
+        - used to get data from a remote server
+        - async in nature
+        - gives back a "Response" object 
+    
+    - then() method and chaining promises
+        - in context of promises, then() is a method that takes a function as an input, and that function is only executed when the promise is fulfilled, i.e. upon the successful completion of async code. 
+        - .then() also returns a promise itself and hence, is a very elegant way to chain multiple asyn operations together that are easy to read and debug. 
+        - the promise returned by the first then() becomes the input for the succeeding then() in async operations. This is known as "chaining promises."
+
+    -
 - Async-await 
