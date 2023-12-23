@@ -1,0 +1,7 @@
+1.5 - Async Functions, Promises, async-await 
+
+- Asynchronous vs synchronous functions 
+- Real world use of callbacks 
+- JS browser architecture
+- Promises
+- Async-await 
