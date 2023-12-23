@@ -1,7 +1,26 @@
 1.5 - Async Functions, Promises, async-await 
 
-- Asynchronous vs synchronous functions 
+1.5.1 - Asynchronous vs synchronous functions 
+
+- Synchronous programming
+    - sequential, line by line
+    - the control reaches to the next line only when it is done with its preceeding line
+
+- Asynchronous programming
+    - non-sequential
+    - the control will not get blocked due to a heavy network request or data fetch (which might take an uncertain amount of time) and hence will reach to the next line. The result of the preceeding call will be thrown to the call stack once all the synchronous code is executed
+    - setTimeout(), setInterval(), fs.readFile(), fetch()
+    - real uses of callbacks is in async code
+    - event handlers are sort of asyn codes as they use callbacks inside them
+    - earlier Asynchronous code dependended completely on callbacks. But using them heavily creates deeply nested async functions that are hard to maintain and debug. Such deeply nested asyn functions with several callbacks are known as "callback hell" or "pyramid of doom."
+    - more modern approach to asyn programming involves using Promises.
+
 - Real world use of callbacks 
-- JS browser architecture
-- Promises
+- JS browser architecture (use latentflip.com to understand this diagramatically)
+
+1.5.2 - Promises
+
+    - a promise is an object that is returned by an async function, which represents the current state of the operation. 
+    - when a caller calls an async function, the async function returns a promise to the caller, where the operation may or may not be finished (not, in most cases).
+    - the promise object, though, has multiple methods that can handle the eventual success or failure of the operation.
 - Async-await 
