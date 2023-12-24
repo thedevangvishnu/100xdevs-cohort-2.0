@@ -4,7 +4,22 @@
 */
 
 function isPalindrome(str) {
-  return true;
+  // if it's an empty string
+  if (str.length === 0) {
+    return true;
+  }
+
+  // remove punctuations from the string
+  const punctuationsRegex = /[!?.,]/g;
+  let newString = str.replace(punctuationsRegex, "");
+  newString = newString.replaceAll(" ", "").toLowerCase();
+
+  for (let i = 0; i < newString.length; i++) {
+    if (newString[i] !== newString[newString.length - 1 - i]) {
+      return false;
+    }
+    return true;
+  }
 }
 
 module.exports = isPalindrome;
