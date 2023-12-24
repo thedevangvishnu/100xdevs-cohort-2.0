@@ -12,7 +12,7 @@ const fetchPromise3 = fetch(
 
 Promise.any([fetchPromise1, fetchPromise2, fetchPromise3])
   .then((response) => {
-    console.log(`Received response for (${response.url}): ${response.status}`);
+    console.log(`Received response for (${response.url}): ${response.status}`); // only one of the responses need to be fulfilled
   })
   .catch((error) => {
     console.error(`Failed to fetch: ${error}`);
