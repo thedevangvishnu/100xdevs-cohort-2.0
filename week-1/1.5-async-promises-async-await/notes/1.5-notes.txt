@@ -36,5 +36,27 @@
         - .then() also returns a promise itself and hence, is a very elegant way to chain multiple asyn operations together that are easy to read and debug. 
         - the promise returned by the first then() becomes the input for the succeeding then() in async operations. This is known as "chaining promises."
 
-    -
+    - catch() method 
+        - used to handle the eventual failure of the async operation 
+        - syntax: catch((error) => {}) 
+        - use only one catch() at the end for all async operations.
+
+    - Pending, fulfilled, rejected
+        - pending: when an async function is called, the return of that function is a promise which is in pending status. The async operation has not succeeded or failed at that time. 
+        - fulfilled: the async operation is successful and then() method is called.
+        - rejected: the async operation has failed and the catch() method is called.
+
+    - Promise.all()
+        - in some cases, multiple async operations need to be executed but they don't depend upon each other.
+        - in such cases, we start all those operations together and get notified using a single promise return.
+        - Promise.all() takes in an array of promises and returns a single promise.
+            - fulfilled:
+                - when and if "all" of the promises in the array are fulfilled.
+                - then() method is called with array of all the responses in the same order as the promises were passed to Promise.all()
+            - rejected:
+                - when and if "any" of the promises in the array is rejected.
+                - catch() method is called with the error thrown by the promise that was rejected.
+
+    - Promise.any()
+        - similar to Promise.all() but here, it is fulfilled when and if "any" of the promises in the array is fulfilled (don't care which one) and rejected, when and if "all" of them are rejected.
 - Async-await 
