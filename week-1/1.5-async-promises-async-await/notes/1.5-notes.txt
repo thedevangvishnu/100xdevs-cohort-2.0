@@ -59,4 +59,11 @@
 
     - Promise.any()
         - similar to Promise.all() but here, it is fulfilled when and if "any" of the promises in the array is fulfilled (don't care which one) and rejected, when and if "all" of them are rejected.
-- Async-await 
+
+    - Async-await 
+        - reserved keywords in js, that make async code easier to write and more readable.
+        - using "async" keyword before a function makes it asynchronous 
+        - inside an async function, using "await" keyword before a function that returns a promise (such as fetch(), json() and the like) returns back the response/error after completing that particular operation, instead of returning the Promise object, as we saw earlier.
+        - when the control reaches to "await", the async operation is executed and the response or error is given back as a return value. 
+        - "try...catch" block is often used.
+        - allows us to write code that looks like synchronous.
