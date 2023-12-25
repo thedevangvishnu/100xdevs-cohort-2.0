@@ -9,5 +9,21 @@ There is no automated test for this one, this is more for you to understand time
 */
 
 function calculateTime(n) {
-    return 0.01;
+  let totalTimeTaken = 0;
+
+  let startTime, endTime;
+  startTime = new Date();
+
+  //   calculate sum from 1 to n
+  let totalSum = 0;
+  for (let i = 0; i < n; i++) {
+    totalSum += i;
+  }
+
+  endTime = new Date();
+
+  totalTimeTaken = (endTime.getTime() - startTime.getTime()) / 1000; // 1 sec = 1000 ms
+  console.log(`This operation took: ${totalTimeTaken}sec`);
 }
+
+calculateTime(1000000);
