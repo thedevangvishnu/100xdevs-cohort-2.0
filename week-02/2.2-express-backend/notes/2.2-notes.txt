@@ -1,0 +1,4 @@
+2.2 - Express and Backend
+
+- Difference between ECMAScript, Js, Node.js and Bun
+- 
