@@ -1,4 +1,6 @@
 2.2 - Express and Backend
 
 - Difference between ECMAScript, Js, Node.js and Bun
-- 
+- HTTP/HTTPs protocols
+- DNS
+- How to create basic servers
