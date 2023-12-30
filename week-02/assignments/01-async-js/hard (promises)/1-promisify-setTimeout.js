@@ -3,6 +3,16 @@
 */
 
 function wait(n) {
+  const promise = new Promise((resolve, reject) => {
+    if (n < 0) {
+      throw new Error("Seconds must not be negative");
+    }
+
+    setTimeout(() => {
+      resolve();
+    }, n * 1000);
+  });
+  return promise;
 }
 
 module.exports = wait;
