@@ -1,0 +1,10 @@
+5.1 - Diving into React 
+
+- Why React or any other frontend framework?
+- Some react jargons
+    - components
+        - resusable UI elements that are just functions that return jsx (html like code snippet in React)
+    - state
+        - an object that represents the current state of the app. 
+        - an object that includes data for the app.
+    - re-rendering
