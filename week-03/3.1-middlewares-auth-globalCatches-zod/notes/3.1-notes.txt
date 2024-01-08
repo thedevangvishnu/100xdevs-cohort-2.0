@@ -1,2 +1,26 @@
 3.1 - Middlewares, Authentication, Global catches and Zod
 
+3.1.1 - Middlewares
+
+    - How to do prechecks? Such as auth check or input validation?
+    - How can a user send input?
+        - query parameters
+        - body
+        - header
+
+        - next();
+        - app.use()
+        
+        
+    - Assignments
+    	- count the number of requests
+    	- Find the average time your server is taking to handle requests
+    	
+3.1.2 - Global catches
+	
+	- app.use((err, req, res, next) => console.error(err))
+
+3.1.3 - Zod
+
+	- library used for input validation
+	- create a "schema", which sort of a blueprint of how the input should look like and hence acts as the "lookup" for the validation
