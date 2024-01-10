@@ -1,0 +1,1 @@
+This text is written to this file using writeFile() method! This sentence was added using appendFile() method.
