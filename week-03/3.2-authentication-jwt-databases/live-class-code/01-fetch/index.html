@@ -1,0 +1,28 @@
+<!-- Use fetch() to get data and print some meaningful reasult -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch</title>
+  </head>
+  <body>
+    <div>
+      <h2>Using Fetch</h2>
+      <button id="button" onclick="getUserData()">Get Data</button>
+      <div id="users"></div>
+    </div>
+    <script>
+      let users = [];
+      const getUserData = async () => {
+        const response = await fetch("https://fakerapi.it/api/v1/persons");
+        const result = await response.json();
+        users = result.data;
+        users.forEach((user, index) => {
+          console.log(`User ${index + 1}: ${user.firstname} ${user.lastname}`);
+        });
+      };
+    </script>
+  </body>
+</html>
