@@ -1,1 +1,26 @@
 3.2 - Fetch, Authentication, JWT, Databases
+
+3.2.1 - Fetch()
+
+3.2.2 - Authentication
+
+    - Hashing
+        - The process of converting some input data (usuall a password or a message) into a very long, fixed-size, complex string, to protect that input is known as hashing. 
+        - Hash functions, when given the same input, return the same, fixed-size output everytime.
+        - Hence, once the user signs in, the password is converted into a hash and stored into the database. When this same user signs in again, the provided input is converted into hash again and is compared with the stored hash code. If both the hash codes match, the user signs in successfully.
+
+    - Encryption
+        - The process of converting an input into some output, using an alogorithm (that uses a secret key) is called Encryption.
+        - The converted output is known as the ciphertext.
+        - Ciphertext can be decripted back to the original input using the secret key. 
+        - Two way process. 
+
+    - Json Web Token 
+        - JWT is a URL-secure representation of claims of transactions between two parties. 
+        - Commonly used for authentication and data transfer. 
+        - Here also, an input/request/claim is converted into a complex format, which can be used to decrpit the original data. In case of jwt, no secret key is required.
+        - But there's a major difference. "Verification" of the claim can only be done by the party who is receiving the claim and has a stored password. 
+
+    - Local Storage
+        - It's a feature that is provided in web browsers to store key/value pairs of data.
+        - This data has no expiration time.
