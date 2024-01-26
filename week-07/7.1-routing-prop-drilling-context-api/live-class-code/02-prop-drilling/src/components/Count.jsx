@@ -1,7 +1,11 @@
-const Count = ({ count }) => {
+import Buttons from "./Buttons";
+import CountRenderer from "./CountRenderer";
+
+const Count = ({ setCount }) => {
   return (
     <div>
-      <h2>{count}</h2>
+      <CountRenderer />
+      <Buttons setCount={setCount} count={count} />
     </div>
   );
 };

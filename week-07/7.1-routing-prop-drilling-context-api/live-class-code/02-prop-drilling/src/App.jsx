@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 import Count from "./components/Count";
-import Buttons from "./components/Buttons";
+import CountContext from "./contexts/counter-context";
 
 function App() {
   const [count, setCount] = useState(0);
   return (
     <div className="App">
-      <Count count={count} />
-      <Buttons setCount={setCount} count={count} />
+      <CountContext.Provider value={count}>
+        <Count setCount={setCount} />
+      </CountContext.Provider>
     </div>
   );
 }
