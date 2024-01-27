@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CreateTodo = () => {
+const CreateTodo = ({ setTodos }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -22,6 +22,8 @@ const CreateTodo = () => {
       }),
     });
 
+    setTodos((previousTodos) => [...previousTodos, { title, description }]);
+
     setTitle("");
     setDescription("");
   };
@@ -41,7 +43,13 @@ const CreateTodo = () => {
         onChange={onDescriptionChange}
       />
 
-      <button onClick={addTodo}>Add todo</button>
+      <button
+        onClick={() => {
+          addTodo();
+        }}
+      >
+        Add todo
+      </button>
     </div>
   );
 };
