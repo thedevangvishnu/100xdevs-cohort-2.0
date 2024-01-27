@@ -1,14 +1,20 @@
 const express = require("express");
+const cors = require("cors");
 const { createTodo, updateTodo } = require("./types");
 const { Todo } = require("./database/db");
 
 const app = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 app.get("/todos", async (req, res) => {
   const todos = await Todo.find();
-  return res.status(200).json({ tooos: todos });
+  return res.status(200).json(todos);
 });
 
 app.post("/todos", async (req, res) => {

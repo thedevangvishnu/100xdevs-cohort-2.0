@@ -2,7 +2,7 @@ const Todos = ({ todos }) => {
   return (
     <div>
       {todos.map((todo) => (
-        <div>
+        <div key={todo._id}>
           <h3>{todo.title}</h3>
           <p>{todo.description}</p>
           <button>

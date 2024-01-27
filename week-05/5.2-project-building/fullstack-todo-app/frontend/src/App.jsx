@@ -11,6 +11,7 @@ function App() {
     const getAllTodos = async () => {
       const response = await fetch(`${API_URL}/todos`);
       const todos = await response.json();
+      console.log(todos);
 
       setTodos(todos);
     };
