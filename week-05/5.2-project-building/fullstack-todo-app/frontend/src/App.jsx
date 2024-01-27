@@ -1,10 +1,29 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { useState, useEffect } from "react";
+import CreateTodo from "./components/CreateTodo";
+import Todos from "./components/Todos";
+
+const API_URL = "http://localhost:3000";
 
 function App() {
-  return <h1>To do app</h1>;
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const getAllTodos = async () => {
+      const response = await fetch(`${API_URL}/todos`);
+      const todos = await response.json();
+
+      setTodos(todos);
+    };
+
+    getAllTodos();
+  }, []);
+
+  return (
+    <div>
+      <CreateTodo />
+      <Todos todos={todos} />
+    </div>
+  );
 }
 
 export default App;
