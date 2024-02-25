@@ -1,0 +1,38 @@
+- Difference between loosely-typed and strictly-typed
+- Run time error vs compile-time error
+- Typescript is syntactical superset of JS
+    - backward compatible 
+    - TS never runs at all
+    - TS is transpiled down to JS and that JS is run by browser and Nodejs
+    - TS compilers
+        - tsc (official)
+        - esbuild
+        - swc
+    
+- Using TS
+    - create a ts config file using 'tsc --int' command
+    - type is assigned using :dataType
+    - "tsc -b": to compile ts file to js file
+
+- Concepts
+    - Assigning types
+        - to variables 
+        - to inputs
+        - to returns
+        - to callbacks
+        - to objects -> using interfaces
+    - Type inference: 
+
+- TS config file
+    - target
+    - rootDir
+    - outDir
+    - noImplicitAny
+    - removeComments
+
+- Interfaces
+    - how to define interfaces
+    - opitional values in interface
+    - implementing interfaces as a class
+
+- Types
