@@ -14,7 +14,7 @@ BASIC SQL
 - Relational vs Non-Relational Databases 
 
     - Relational 
-        - Data is organized into tables, each having colums and rows, where each row has a unique identifier.
+        - Data is organized into tables, each having colums and rows, where each column represents a single attribute and each row (has a unique identifier) represents a single entry.
 
         - Relational Database Management System (RDBMS)
             - Special softwares that allow to create and maintain a relational database. 
@@ -32,6 +32,35 @@ BASIC SQL
 
 
 - Query
-    - A query is a request that is made to the DBMS. 
+    - A query is a request that is made to the DBMS or a set of instructions that are given to DBMS.
     - That request could be any of the four CRUD operations.
     - Queries, in RDBMS are written in SQL or in the language that is specified by the RDMS. 
+
+- Keys:
+    - Primary key: a unique value that identifies a row in a table.
+    - Surrogate key: a primary key that has no meaning or significance outside of that table. 
+    - Natural key: a primary key that has some significance and meaning in the real world.
+    - Foreign key: a primary key of another table. Allow to connect tables and form relationships.
+    - Composite key: a primary key that is made up of two attibutes because each attribute (or column) doesn't consist all unique values and hence cannot be the column of primary keys. But together, the two columns now have values that become unique keys for each row/entry.
+
+
+- SQL Basics
+
+    - Structured Query Language is a language that RDBMS use to create and maintain database and also allow to administrative tasks.
+    - Combination of 4 languages:
+        - Data Query Language (DQL): used to query the database for information.
+        - Data Control Language (DCL): used to constrol access to data in database.
+        - Data Defintion Language (DDL): used to defines schemas in database.
+        - Data Manipulation Language (DML): used for inserting, updating and deleting data in the database. 
+
+- Basic Datatypes in SQL
+    - INT
+    - DECIMAL(T, D)   (T - total number of digits, D - total number of decimal digits in T)
+    - VARCHAR(1)
+    - BLOB
+    - DATE    ('YYYY-MM-DD')
+    - TIMESTAP    ('YYYY-MM-DD HH:MM:SS')
+
+- SQL Commands
+    1 - Create tables and define structure for the database.
+    2 - Insert data into the table
