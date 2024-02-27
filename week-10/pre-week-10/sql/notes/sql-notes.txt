@@ -1,0 +1,46 @@
+- Intro to SQL and Postgres
+
+- Difference between SQL and NoSQL
+
+- Using ElephantSQL to create a Postgres instance
+    - postgres url syntax:
+        - postgres://[username]:[password]@[host_name]/[database_name]
+
+
+- Create tables
+    - CREATE TABLE users {
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+    }
+    
+    - CREATE TABLE todos {
+        id SERIAL PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        user_id INTEGER REFERENCES users(id),
+        done BOOLEAN DEFAULT FLASE,
+    }
+
+    New syntax in the above examples
+        - CREATE TABLE 
+        - SERIAL
+        - PRIMARY KEY
+        - VARCHAR()
+        - UNIQUE
+        - NOT NULL
+        - TEXT
+        - INTEGER
+        - REFERENCES
+        - DEFAULT
+        - foreign key
+
+- Insert into the table
+    - INSERT INTO users (username, email, password)
+      VALUES ("john_doe", "john.doe@example.com", "hashed_passsword");
+
+    - INSERT INTO todos (title, description, user_id, done)
+      VALUES ("Go to gym", "Go to gym and do push workout", 1, FALSE);
+
+- Get 
+    - SELECT * FROM todos WHERE user.id = desired_user_id;

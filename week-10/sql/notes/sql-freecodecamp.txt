@@ -1,0 +1,37 @@
+BASIC SQL 
+
+- What is a Databse(DB)?
+    - Any collection of related information that can be stored in different ways.
+
+- (Database Management System) DBMS
+    - A special software that allows to create and maintain databases.
+        - adds security to databases
+        - much easier to maintain large amounts of information 
+        - can interact with programming languages
+        - makes it more scalable 
+        - allows for CRUD operation 
+
+- Relational vs Non-Relational Databases 
+
+    - Relational 
+        - Data is organized into tables, each having colums and rows, where each row has a unique identifier.
+
+        - Relational Database Management System (RDBMS)
+            - Special softwares that allow to create and maintain a relational database. 
+            - mySQL, postgreSQL and the like.
+            - RDBMS use a special language that is called "Structured Query Language (SQL)."
+
+    - Non-relational
+        - Data is orgranized into anything but a table. 
+        - Any database, that is not relational comes under non-ralational.
+        - Documents (JSON, XML, etc.), Graphs, key-value pairs.
+
+        - Non-relational database management system (NRDBMS) 
+            - Speial softwares that allow to create and maintain a non-relational database.
+            - mongoDB, firebase, etc. 
+
+
+- Query
+    - A query is a request that is made to the DBMS. 
+    - That request could be any of the four CRUD operations.
+    - Queries, in RDBMS are written in SQL or in the language that is specified by the RDMS. 
