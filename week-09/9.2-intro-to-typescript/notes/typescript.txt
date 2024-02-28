@@ -10,7 +10,7 @@
         - swc
     
 - Using TS
-    - create a ts config file using 'tsc --int' command
+    - create a ts config file using 'tsc --init' command
     - type is assigned using :dataType
     - "tsc -b": to compile ts file to js file
 
@@ -34,5 +34,31 @@
     - how to define interfaces
     - opitional values in interface
     - implementing interfaces as a class
+        - use keyword "implements" (only specific to typescript.)
 
 - Types
+    - similar to interfaces.
+    - let you aggregate data
+    - sntax:
+        - type Name = {}
+    - let you create unions (having values of "either" of  two ot more types)
+    - let you create intersections (having values of "all" of two or more types)
+
+- Difference between interfaces and types
+    - 
+
+- Array
+    - use ":[]"
+
+- Enums:
+    - Short for "enumerations", these are just a set of constant values.
+    - allow to make a set of constant values more human-readable 
+    - specific to Typescript.
+    - the final values at runtime are still numbers by default (0, 1, 2 and so on).
+    - these values can be changed to other values (usually strings).
+    - popular use case for enums is to create an enum of status codes for response that are returned using a server implemented in express
+
+- Generics
+
+- Exporting and importing modules
+    - use ES6 syntax of imports and exports
