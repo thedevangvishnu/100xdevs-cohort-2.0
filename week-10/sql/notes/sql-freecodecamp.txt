@@ -64,3 +64,5 @@ BASIC SQL
 - SQL Commands
     1 - Create tables and define structure for the database.
     2 - Insert data into the table
+    3 - Update and Delete
+    4 - Conditional inserting, getting 
