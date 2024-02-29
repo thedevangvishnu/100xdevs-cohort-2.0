@@ -41,7 +41,7 @@ BASIC SQL
     - Surrogate key: a primary key that has no meaning or significance outside of that table. 
     - Natural key: a primary key that has some significance and meaning in the real world.
     - Foreign key: a primary key of another table. Allow to connect tables and form relationships.
-    - Composite key: a primary key that is made up of two attibutes because each attribute (or column) doesn't consist all unique values and hence cannot be the column of primary keys. But together, the two columns now have values that become unique keys for each row/entry.
+    - Composite key: a primary key that is made up of two attibutes because each attribute (or column) doesn't consist of all unique values and hence cannot be the column of primary keys. But together, the two columns now have values that become unique keys for each row/entry.
 
 
 - SQL Basics
@@ -62,7 +62,74 @@ BASIC SQL
     - TIMESTAP    ('YYYY-MM-DD HH:MM:SS')
 
 - SQL Commands
-    1 - Create tables and define structure for the database.
-    2 - Insert data into the table
-    3 - Update and Delete
-    4 - Conditional inserting, getting 
+
+ 1 - To create a table 
+ 	- CREATE TABLE tableName (colName1 DATATYPE1, colName2 DATATYPE2);
+ 	- CREATE TABLE users (name TEXT, age SMALLINT);
+ 
+ 2 - To add values into the table 
+ 	- INSERT INTO tableName (colName1, colName2) VALUES (value1, value2);
+ 	- INSERT INTO users (name, age) VALUES ('Devang', 25);
+ 
+ 3 - To select values from table 
+ 	- To select one
+ 		- SELECT colName1, colName2 FROM tableName;
+ 		- SELECT name FROM users;
+ 	- To select all
+ 		- SELECT * FROM tableName;
+ 		- SELECT * FROM users;
+ 
+ 4 - To alter the table 
+ 	- ALTER TABLE tableName ADD colName3 dataType3;
+ 	- ALTER TABLE users ADD score SMALLINT;
+ 
+ 5 - To update the table 
+ 	- UPDATE tableName SET colName3 = value3 WHERE colName1 = value1;
+ 	- UPDATE users SET score = 30 WHERE name = 'Devang';
+ 	
+ 6 - Conditional searches
+ 	- SELECT * FROM tableName WHERE anyCondition;
+ 	- SELECT * FROM users WHERE name = 'Devang';
+ 	
+ 	- Order by ascending or descending order
+ 		- SELECT * FORM tableName ORDER BY colName DESC/ASC;
+ 		- SEELCT * FROM users ORDER BY score ASC;
+ 		
+ 7 - Functions 
+ 	- average: AVG(colName)  --> SELECT AVG(score) FROM users;
+ 	- sum: SUM(colName)  --> SELECT SUM(score) FROM users;
+ 	- count: COUNT(colName)  --> SELECT COUNT(name) FROM users;
+ 	
+ 8 - Deleting and dropping
+ 	- To delete values from a table
+ 		- DELETE FROM tableName WHERE colName = value;
+ 		- DELETE FROM users WHERE name = 'Devang';
+ 		
+ 	- To delete the entire table 
+ 		- DROP TABLE tableName;
+ 		- DROP TABEL users;
+ 	 
+ 	- To delete entire single column
+ 		- ALTER TABLE tableName DROP COLUMN columnName;
+ 		- ALTER TABLE users DROP COLUMN name;
+ 		
+ 		for mutiple columns, use multiple DROP queries:
+ 		- ALTER TABLE users DROP COLUMN name DROP COLUMN email;
+ 	
+ 9 - General commands:
+ 	- SHOW TABLES: to show all tables in a database.
+ 	- SHOW DATABASES: to show all databases in a connection.
+ 	- SELECT DATABASE(): to show the database you are in.
+ 	
+ 	
+ 10 - Some datatype properties/contraints keywords
+ 	- UNIQUE
+ 	- NOT NULL
+ 	- AUTO_INCREMENT
+ 
+ 	
+ 	- LIMIT
+ 	- AND
+ 	- OR
+ 	- IN
+ 	- <> not equal to sign in SQL
