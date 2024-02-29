@@ -126,6 +126,9 @@ BASIC SQL
  	- UNIQUE
  	- NOT NULL
  	- AUTO_INCREMENT
+    - ON DELETE SET NULL
+    - FOREIGN KEY(attributeName) REFERENCES tableName(attributeName) ON DELETE SET NULL
+    - ON DELETE CASCADE
  
  	
  	- LIMIT
