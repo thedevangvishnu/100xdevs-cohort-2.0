@@ -21,7 +21,6 @@ async function doPostgresOperations() {
     const values = ["example2@gmail.com"];
 
     const result = await client.query(getQuery, values);
-    console.log(result);
 
     if (result.rows.length > 0) {
       console.log("User found:", result.rows[0]);
