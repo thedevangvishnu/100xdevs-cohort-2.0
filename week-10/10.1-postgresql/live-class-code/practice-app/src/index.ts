@@ -6,6 +6,7 @@ import {
   createAddressesTable,
   insertAddress,
 } from "./queries/addresses/addresses";
+import { getUserWithAddress } from "./queries/join";
 
 async function connectToPg() {
   await client.connect();
@@ -23,10 +24,12 @@ connectToPg();
 // addresses db operation
 
 // createAddressesTable();
-insertAddress({
-  user_id: 2,
-  street: "Kali Asthan",
-  city: "Patna",
-  country: "India",
-  pincode: "800007",
-});
+// insertAddress({
+//   user_id: 2,
+//   street: "Kali Asthan",
+//   city: "Patna",
+//   country: "India",
+//   pincode: "800007",
+// });
+
+getUserWithAddress(3);
