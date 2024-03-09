@@ -1,0 +1,3 @@
+Relationships and Transactions
+
+- If a table is related to another table, we connect them using a key known as foreign key, which is just a primary key for a row in another table.
