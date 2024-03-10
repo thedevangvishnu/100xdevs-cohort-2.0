@@ -12,3 +12,19 @@ datasource db {
   provider = "postgresql"
   url      = "postgresql://devang:Musicmylove@1234@localhost:5432/100xdevs-practice"
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  firstName String?
+  lastName String?
+  password String
+}
+
+model Todo {
+  id Int @id @default(autoincrement())
+  title String
+  descriptioin String?
+  done Boolean @default(false)
+  userId Int
+}
