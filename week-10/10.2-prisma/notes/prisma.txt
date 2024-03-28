@@ -16,7 +16,7 @@
             - add provider and url
             - connection url:
                 - url: postgresql://devang:Musicmylove@1234@localhost:5432/100xdevs-practice
-	            - format: provider://username:password@host:port/databseName
+	            - format: provider://username:password@host/databseName
 	
 	        (command to navigate to postgres user and db:  
                 psql -h localhost -d postgres -U postgres)
