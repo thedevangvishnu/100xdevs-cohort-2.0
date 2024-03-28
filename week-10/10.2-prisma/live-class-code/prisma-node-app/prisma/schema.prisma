@@ -24,7 +24,7 @@ model User {
 model Todo {
   id Int @id @default(autoincrement())
   title String
-  descriptioin String?
+  description String?
   done Boolean @default(false)
   userId Int
 }
