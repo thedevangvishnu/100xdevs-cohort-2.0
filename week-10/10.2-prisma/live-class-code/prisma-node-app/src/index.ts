@@ -25,5 +25,36 @@ async function insertUser(
   console.log(res);
 }
 
-insertUser("one@example.com", "one@1234", "oneFirst", "oneLast");
-insertUser("two@example.com", "two@1234", "twoFirst", "twoLast");
+// insertUser("one@example.com", "one@1234", "oneFirst", "oneLast");
+// insertUser("two@example.com", "two@1234", "twoFirst", "twoLast");
+
+interface UpdateParams {
+  firstName: string;
+  lastName: string;
+}
+
+async function updateUser(
+  username: string,
+  { firstName, lastName }: UpdateParams
+) {
+  const res = await prisma.user.update({
+    where: { email: username },
+    data: {
+      firstName,
+      lastName,
+    },
+    select: {
+      id: true,
+      email: true,
+      firstName: true,
+      lastName: true,
+    },
+  });
+
+  console.log(res);
+}
+
+updateUser("one@example.com", {
+  firstName: "oneFirstName",
+  lastName: "oneLastName",
+});
