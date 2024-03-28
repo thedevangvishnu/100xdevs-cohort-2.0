@@ -1,40 +1,82 @@
 - What is ORM 
+
+ORM (Object-Relational Mapping) is a powerful programming technique that simplifies database access and manipulation by providing a layer of abstraction between application code and relational databases. 
+
+    - In traditional software development, there are two main paradigms for storing and manipulating data: object-oriented programming (OOP) and relational databases. Object-oriented programming organizes data and behavior into objects, while relational databases organize data into tables with rows and columns.
+    
+    - ORM is a programming technique that allows developers to map objects from their application code to tables in a relational database and vice versa.
+    
+    - With ORM, developers can interact with the database using objects, methods, and properties, rather than writing SQL queries directly.
+
 - Why ORMs
 
-- Prisma 
-    - What
-        - intuitive data model
-        - automated migrations
-            - what is a migration
-        - type safety
-        - auto-completion
+    - Productivity: ORMs can significantly improve productivity by abstracting away the complexities of SQL queries and database operations. Developers can focus more on the business logic of their applications rather than spending time writing boilerplate SQL code.
 
-    - Installing and initializing Prisma
-        - npm install prisma 
-        - npx prisma init 
-        - configure prisma 
-            - add provider and url
-            - connection url:
-                - url: postgresql://devang:Musicmylove@1234@localhost:5432/100xdevs-practice
-	            - format: provider://username:password@host/databseName
+    - Portability: ORMs provide a layer of abstraction between the application code and the database, making it easier to switch between different database systems. Developers can write code using ORM frameworks and deploy it on various databases without making significant changes.
+
+    - Maintainability: By encapsulating database operations within ORM frameworks, code becomes more modular and easier to maintain. Changes to the database schema can be handled more seamlessly without requiring extensive modifications to the application code.
+
+    - Transaction Management: ORMs typically provide support for transaction management, allowing developers to group multiple database operations into a single transaction and ensure data consistency and integrity.
+
+- Prisma 
+
+Prisma is an open-source database toolkit for Nodejs that simplifies database access and management for developers.
+    
+- Characteristics/advantages of Prisma
+
+        - Intuitive data model
+
+            - Prisma allows developers to define their data models using a declarative and intuitive syntax. Developers can define models using a schema definition language (SDL) that closely resembles standard programming language syntax.
+
+            - The intuitive data model makes it easier for developers to conceptualize and design their database schema, reducing the cognitive overhead typically associated with database design.
+
+        - Automated migrations
+
+            - Migration: 
+                - a way to manage changes to the database schema over time. As the requirements of an application evolve, developers often need to add new tables, modify existing columns, or make other structural changes to the database.
+                - migrate after each schema change: npx prisma migrate dev --name <name>
+
+            - Prisma provides automated migration capabilities, which means that developers can define changes to the database schema using code, and Prisma handles the process of applying those changes to the database.
+
+        - Type safety
+
+            - Prisma offers type safety by generating strongly-typed client libraries based on the database schema. When developers interact with the database using Prisma's client libraries, they get compile-time type checking, ensuring that they are using the correct data types and adhering to the schema definition.
+
+            - Type safety helps catch errors early in the development process, reducing the risk of runtime errors and improving code quality and reliability
+
+        - Auto-completion
+
+            - Prisma's tooling and integrations provide auto-completion support in popular code editors and IDEs (Integrated Development Environments) such as Visual Studio Code.
+
+- Installing and initializing Prisma
+    - npm install prisma 
+    - npx prisma init 
+    - configure prisma 
+        - add provider and url
+        - connection url:
+            - url: postgresql://devang:Musicmylove@1234@localhost:5432/100xdevs-practice
+	        - format: provider://username:password@host/databseName
 	
 	        (command to navigate to postgres user and db:  
                 psql -h localhost -d postgres -U postgres)
     
-    - Creating models
-        - define the schema of all the model specific to the application
-        - after creating model, migrate it and then create auto-generated clients 
+- Creating models
+    - define the schema of all the model specific to the application
+    - after creating model, migrate it and then create auto-generated clients 
 
-    - Migrating
-        - The database needs to know what tables would be inside it and what structure would they have. Migrations do that. 
-        - npx prisma migrate dev -name <name>
+- Migrating
+    - The database needs to know what tables would be inside it and what structure would they have. Migrations do that. 
+    - npx prisma migrate dev -name <name>
 
-    - Autogenerated clients
-        - prisma needs to create js classes or functions that can let the nodejs communicate with the models defined in schema.prisma, hence being able to communicate with the actual db
-            - npx prisma generate
-        - using this client
-            - running the command given above creates a new prisma client 
+- Autogenerated clients
+
+Autogenerated clients in Prisma are automatically generated client libraries that provide type-safe, efficient, consistent, and easy-to-use access to the database from application code.
+
+- Commands: 
+    - npx prisma generate
+    - using this client
+        - running the command given above creates a new prisma client 
             - import {PrismaClient} from "@prisma/client";
             -  const prisma = new PrismaClient();
     
-    - 
+    
