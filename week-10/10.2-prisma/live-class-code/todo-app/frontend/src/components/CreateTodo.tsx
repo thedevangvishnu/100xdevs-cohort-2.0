@@ -1,10 +1,13 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import { MdDescription, MdTitle } from "react-icons/md";
 
 import * as requests from "../requests";
-import { TodoType } from "../contexts/TodosContext";
+
+export type CreateTodoType = {
+  title: string;
+  description?: string;
+};
 
 const CreateTodo = () => {
   const queryClient = useQueryClient();
@@ -13,7 +16,7 @@ const CreateTodo = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TodoType>();
+  } = useForm<CreateTodoType>();
 
   const { mutate, isLoading } = useMutation(requests.createTodo, {
     onSuccess: async () => {
@@ -25,7 +28,7 @@ const CreateTodo = () => {
     },
   });
 
-  const onSubmit = async (todo: TodoType) => {
+  const onSubmit = async (todo: CreateTodoType) => {
     mutate(todo);
   };
 

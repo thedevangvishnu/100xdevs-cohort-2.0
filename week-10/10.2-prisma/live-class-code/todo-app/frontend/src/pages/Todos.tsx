@@ -1,6 +1,8 @@
 import { useUserContext } from "../contexts/UserContext";
-import CreateTodo from "../components/CreateTodo";
 import { useTodosContext } from "../contexts/TodosContext";
+
+import CreateTodo from "../components/CreateTodo";
+import Todo from "../components/Todo";
 
 const Todos = () => {
   const { username } = useUserContext();
@@ -19,10 +21,10 @@ const Todos = () => {
         </div>
 
         {/* view all todo's section */}
-        <div className="flex flex-col w-full  md:w-1/2 gap-4 bg-neutral-900 px-4 py-2 rounded-xl">
+        <div className="flex flex-col w-full  md:w-1/2 gap-4 bg-neutral-900 px-4 pt-2 pb-6 rounded-xl">
           <h3 className="text-2xl font-semibold">Your Todos</h3>
           {todos?.map((todo) => {
-            return <p>{todo?.title}</p>;
+            return <Todo todo={todo} key={todo.id} />;
           })}
         </div>
       </div>

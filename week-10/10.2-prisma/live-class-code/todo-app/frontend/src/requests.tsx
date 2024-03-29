@@ -1,6 +1,6 @@
 import { RegisterFormType } from "./pages/Register";
 import { LoginFormType } from "./pages/Login";
-import { TodoType } from "./contexts/TodosContext";
+import { CreateTodoType } from "./components/CreateTodo";
 
 const API_URL = "http://localhost:8000/api";
 
@@ -88,7 +88,7 @@ export const getAllTodo = async () => {
   return responseBody.todos;
 };
 
-export const createTodo = async (todo: TodoType) => {
+export const createTodo = async (todo: CreateTodoType) => {
   const response = await fetch(`${API_URL}/todos/create`, {
     method: "POST",
     credentials: "include",

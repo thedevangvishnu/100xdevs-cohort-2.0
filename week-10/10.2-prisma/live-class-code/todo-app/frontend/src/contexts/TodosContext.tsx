@@ -3,8 +3,11 @@ import { useQuery } from "react-query";
 import * as requests from "../requests";
 
 export type TodoType = {
+  id: number;
   title: string;
   description?: string;
+  done: boolean;
+  user_id: number;
 };
 
 type TodosContextType = {
