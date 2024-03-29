@@ -37,9 +37,3 @@ export const getUser = async (email: string) => {
     throw new Error(error);
   }
 };
-
-try {
-} catch (error: any) {
-  console.log(error);
-  throw new Error(error);
-}

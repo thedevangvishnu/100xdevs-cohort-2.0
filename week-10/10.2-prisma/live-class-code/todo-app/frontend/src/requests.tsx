@@ -1,7 +1,10 @@
 import { RegisterFormType } from "./pages/Register";
 import { LoginFormType } from "./pages/Login";
+import { TodoType } from "./contexts/TodosContext";
 
 const API_URL = "http://localhost:8000/api";
+
+// user-related requests
 
 export const register = async (formData: RegisterFormType) => {
   const response = await fetch(`${API_URL}/users/register`, {
@@ -61,6 +64,42 @@ export const logout = async () => {
   });
 
   const responseBody = await response.json();
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+
+  return responseBody;
+};
+
+// todos-related requests
+
+export const getAllTodo = async () => {
+  const response = await fetch(`${API_URL}/todos`, {
+    method: "GET",
+    credentials: "include",
+  });
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+
+  return responseBody.todos;
+};
+
+export const createTodo = async (todo: TodoType) => {
+  const response = await fetch(`${API_URL}/todos/create`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(todo),
+  });
+
+  const responseBody = await response.json();
+
   if (!response.ok) {
     throw new Error(responseBody.message);
   }

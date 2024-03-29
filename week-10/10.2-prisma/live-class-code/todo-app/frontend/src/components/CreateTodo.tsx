@@ -1,23 +1,39 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "react-query";
 import { MdDescription, MdTitle } from "react-icons/md";
 
-export type CreateToddoType = {
-  title: string;
-  description: string;
-};
+import * as requests from "../requests";
+import { TodoType } from "../contexts/TodosContext";
 
 const CreateTodo = () => {
+  const queryClient = useQueryClient();
   const {
     register,
+    handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<CreateToddoType>();
+  } = useForm<TodoType>();
+
+  const { mutate, isLoading } = useMutation(requests.createTodo, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries("todos");
+      reset();
+    },
+    onError: (error: Error) => {
+      console.log(error.message);
+    },
+  });
+
+  const onSubmit = async (todo: TodoType) => {
+    mutate(todo);
+  };
 
   return (
     <div className="w-full md:max-w-full px-4">
       <form
-        action=""
-        className="w-full flex flex-col gap-4 items-center justify-center"
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full flex flex-col gap-8 items-center justify-center"
       >
         <div className="w-full flex flex-col gap-2">
           <label className="w-full flex gap-2 items-center border-b-2">
@@ -54,19 +70,10 @@ const CreateTodo = () => {
               })}
             ></textarea>
           </label>
-
-          {/* <div className="h-3 w-full self-start text-left">
-            {errors.description && (
-              <p className="text-red-500 italic">
-                {errors.description.message}
-              </p>
-            )}
-          </div> */}
         </div>
 
         <button type="submit" className="mt-2">
-          {/* {isLoading ? "Loading..." : "SIGN IN"} */}
-          CREATE TODO
+          {isLoading ? "CREATING..." : "CREATE TODO"}
         </button>
       </form>
     </div>

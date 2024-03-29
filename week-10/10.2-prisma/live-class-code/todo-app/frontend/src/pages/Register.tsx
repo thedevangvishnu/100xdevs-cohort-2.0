@@ -20,6 +20,8 @@ const Register = () => {
     onSuccess: async () => {
       console.log("Register successful");
       await queryClient.invalidateQueries("token");
+      await queryClient.invalidateQueries("todos");
+
       navigate("/");
     },
     onError: (error: Error) => {

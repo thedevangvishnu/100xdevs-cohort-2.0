@@ -17,6 +17,7 @@ const Login = () => {
     onSuccess: async () => {
       console.log("Login successful");
       await queryClient.invalidateQueries("token");
+      await queryClient.invalidateQueries("todos");
       navigate("/");
     },
     onError: (error: Error) => {
