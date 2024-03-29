@@ -4,7 +4,7 @@ import CreateTodo from "../components/CreateTodo";
 const Todos = () => {
   const { username } = useUserContext();
   return (
-    <div className="px-4 py-10 md:px-8 lg:px-20 flex flex-col gap-16">
+    <div className="px-4 py-10 md:px-8 lg:px-20 flex flex-col gap-8 md:gap-16">
       <h2 className="text-4xl font-semibold text-center">{username}'s todos</h2>
 
       <div className="flex flex-col md:flex-row gap-10">

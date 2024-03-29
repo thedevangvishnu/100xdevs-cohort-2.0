@@ -13,7 +13,6 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
   const { data, isError } = useQuery("token", requests.validateToken, {
     retry: false,
   });
-  console.log(data);
   return (
     <UserContext.Provider
       value={{
