@@ -34,6 +34,22 @@ router.get("/", verifyUser, async (req: Request, res: Response) => {
   }
 });
 
+router.put("/:todoId", verifyUser, async (req: Request, res: Response) => {
+  try {
+    const todoId = Number(req.params.todoId);
+    const userId = req.userId;
+    const { title, description } = req.body;
+
+    const todo = await Todo.getTodoById(userId, todoId);
+
+    if (!todo) {
+      return res.status(400).json({ message: "Invalid todo id!" });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "Something went wrong!" });
+  }
+});
+
 router.delete("/:todoId", verifyUser, async (req: Request, res: Response) => {
   try {
     const todoId = Number(req.params.todoId);
@@ -41,12 +57,12 @@ router.delete("/:todoId", verifyUser, async (req: Request, res: Response) => {
 
     const todo = await Todo.getTodoById(userId, todoId);
     if (!todo) {
-      return res.status(400).json({ message: "Invalid todo" });
+      return res.status(400).json({ message: "Invalid todo id!" });
     }
 
     const deleted = await Todo.deleteTodo(userId, todoId);
 
-    return res.status(200).json({ message: "Todo deleted!" });
+    return res.status(200).json({ message: "Todo deleted!", deleted });
   } catch (error) {
     return res.status(500).json({ message: "Something went wrong!" });
   }

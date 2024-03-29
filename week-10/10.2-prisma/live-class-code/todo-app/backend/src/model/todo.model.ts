@@ -11,7 +11,7 @@ export type TodoType = {
 
 export type UpdatedTodoType = {
   title: string;
-  description: string;
+  description?: string;
   done: boolean;
 };
 

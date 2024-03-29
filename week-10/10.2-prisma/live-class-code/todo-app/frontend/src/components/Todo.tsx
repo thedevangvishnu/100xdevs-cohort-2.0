@@ -1,13 +1,15 @@
-import { FaPenToSquare, FaCircleXmark } from "react-icons/fa6";
+import { FaPenToSquare, FaCircleXmark, FaCheck } from "react-icons/fa6";
 import { useMutation, useQueryClient } from "react-query";
 
 import { TodoType } from "../contexts/TodosContext";
 
 import * as requests from "../requests";
+import { useState } from "react";
 
 const Todo = ({ todo }: { todo: TodoType }) => {
-  const queryClient = useQueryClient();
+  const [done, setDone] = useState(false);
 
+  const queryClient = useQueryClient();
   const { mutate } = useMutation(requests.deleteTodo, {
     onSuccess: async () => {
       await queryClient.invalidateQueries("todos");
@@ -26,7 +28,13 @@ const Todo = ({ todo }: { todo: TodoType }) => {
     <div className="w-full rounded-xl px-6 py-6 flex items-center gap-4 bg-neutral-950">
       {/* checkbox */}
       <div>
-        <div className="w-4 h-4 border-2 cursor-pointer"></div>
+        <div
+          className={`w-5 h-5 border-2 border-gray-300 cursor-pointer flex items-center justify-center p-[3px] ${
+            done ? "bg-neutral-700" : ""
+          }`}
+        >
+          {done && <FaCheck className="text-gray-100" />}
+        </div>
       </div>
 
       {/* title and description */}
