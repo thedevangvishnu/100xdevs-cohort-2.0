@@ -3,8 +3,12 @@ import Layout from "./layout/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Todos from "./pages/Todos";
+import { useUserContext } from "./contexts/UserContext";
 
 const App = () => {
+  const { isLoggedIn } = useUserContext();
+
   return (
     <BrowserRouter>
       <Routes>
@@ -32,6 +36,18 @@ const App = () => {
             </Layout>
           }
         />
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/todos"
+              element={
+                <Layout>
+                  <Todos />
+                </Layout>
+              }
+            />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );

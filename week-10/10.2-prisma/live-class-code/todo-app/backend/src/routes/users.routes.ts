@@ -119,4 +119,12 @@ router.get("/validate-token", verifyUser, (req: Request, res: Response) => {
   return res.status(200).json({ userId: req.userId, name: req.name });
 });
 
+router.post("/logout", verifyUser, (req: Request, res: Response) => {
+  res.cookie("token", "", {
+    expires: new Date(0),
+  });
+
+  return res.status(200).json({ message: "Logout successfull!" });
+});
+
 export default router;
