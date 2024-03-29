@@ -71,12 +71,33 @@ export const updateTodo = async (
 };
 
 export const deleteTodo = async (userId: number, todoId: number) => {
-  const res = await prisma.todo.delete({
-    where: {
-      user_id: userId,
-      id: todoId,
-    },
-  });
+  try {
+    const res = await prisma.todo.delete({
+      where: {
+        user_id: userId,
+        id: todoId,
+      },
+    });
+    return res;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const getTodoById = async (userId: number, todoId: number) => {
+  try {
+    const res = await prisma.todo.findFirst({
+      where: {
+        user_id: userId,
+        id: todoId,
+      },
+    });
+    return res;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
 };
 
 /*

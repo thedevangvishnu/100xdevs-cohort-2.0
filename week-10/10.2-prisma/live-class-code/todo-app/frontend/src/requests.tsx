@@ -106,3 +106,18 @@ export const createTodo = async (todo: CreateTodoType) => {
 
   return responseBody;
 };
+
+export const deleteTodo = async (todoId: number) => {
+  const response = await fetch(`${API_URL}/todos/${todoId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+
+  return responseBody;
+};

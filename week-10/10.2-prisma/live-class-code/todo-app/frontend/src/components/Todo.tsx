@@ -1,8 +1,27 @@
 import { FaPenToSquare, FaCircleXmark } from "react-icons/fa6";
+import { useMutation, useQueryClient } from "react-query";
 
 import { TodoType } from "../contexts/TodosContext";
 
+import * as requests from "../requests";
+
 const Todo = ({ todo }: { todo: TodoType }) => {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(requests.deleteTodo, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries("todos");
+      console.log(`Todo with id ${todo.id} deleted!`);
+    },
+    onError: (error: Error) => {
+      console.log(error.message);
+    },
+  });
+
+  const onDeleteIconClick = (todoId: number) => {
+    mutate(todoId);
+  };
+
   return (
     <div className="w-full rounded-xl px-6 py-6 flex items-center gap-4 bg-neutral-950">
       {/* checkbox */}
@@ -24,6 +43,7 @@ const Todo = ({ todo }: { todo: TodoType }) => {
         <FaCircleXmark
           className="text-xl cursor-pointer text-gray-600 hover:text-gray-200 focus:text-gray"
           title="Delete todo"
+          onClick={() => onDeleteIconClick(todo.id)}
         />
       </div>
     </div>
