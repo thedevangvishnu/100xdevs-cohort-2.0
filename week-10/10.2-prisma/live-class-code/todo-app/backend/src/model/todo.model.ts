@@ -7,12 +7,7 @@ export type TodoType = {
   description?: string;
   done: boolean;
   user_id: number;
-};
-
-export type UpdatedTodoType = {
-  title: string;
-  description?: string;
-  done: boolean;
+  created_at: Date;
 };
 
 export const createTodo = async (todo: TodoType) => {
@@ -23,6 +18,7 @@ export const createTodo = async (todo: TodoType) => {
         description: todo.description,
         done: todo.done,
         user_id: todo.user_id,
+        created_at: todo.created_at,
       },
     });
     return res;
@@ -36,6 +32,9 @@ export const getAllTodo = async (userId: number) => {
   try {
     const res = await prisma.todo.findMany({
       where: { user_id: userId },
+      orderBy: {
+        created_at: "asc",
+      },
     });
 
     return res;
@@ -48,7 +47,9 @@ export const getAllTodo = async (userId: number) => {
 export const updateTodo = async (
   userId: number,
   todoId: number,
-  updatedTodo: UpdatedTodoType
+  todoTitle: string,
+  todoDescription: string | null,
+  todoDone: boolean
 ) => {
   try {
     const res = await prisma.todo.update({
@@ -57,9 +58,32 @@ export const updateTodo = async (
         id: todoId,
       },
       data: {
-        title: updatedTodo.title,
-        description: updatedTodo.description,
-        done: updatedTodo.done,
+        title: todoTitle,
+        description: todoDescription,
+        done: todoDone,
+      },
+    });
+
+    return res;
+  } catch (error: any) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const toggleDone = async (
+  userId: number,
+  todoId: number,
+  todoDone: boolean
+) => {
+  try {
+    const res = await prisma.todo.update({
+      where: {
+        user_id: userId,
+        id: todoId,
+      },
+      data: {
+        done: !todoDone,
       },
     });
 
