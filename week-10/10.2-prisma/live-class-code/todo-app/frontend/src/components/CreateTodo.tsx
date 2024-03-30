@@ -41,12 +41,12 @@ const CreateTodo = () => {
         <div className="w-full flex flex-col gap-2">
           <label className="w-full flex gap-2 items-center border-b-2">
             <span>
-              <MdTitle className="text-xl opacity-40" />
+              <MdTitle className="text-lg opacity-40" />
             </span>
             <input
               type="text"
               placeholder="Title"
-              className="w-full py-3 px-2 border-none outline-none bg-transparent text-white text-xl"
+              className="w-full py-3 px-2 border-none outline-none bg-transparent text-white text-lg"
               {...register("title", {
                 required: "This field is required!",
               })}

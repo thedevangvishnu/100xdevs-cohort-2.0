@@ -21,8 +21,6 @@ export const TodosContextProvider = ({ children }: { children: ReactNode }) => {
     retry: false,
   });
 
-  console.log(data);
-
   return (
     <TodosContext.Provider
       value={{

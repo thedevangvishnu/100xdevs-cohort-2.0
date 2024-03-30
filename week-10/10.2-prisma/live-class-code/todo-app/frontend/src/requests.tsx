@@ -1,6 +1,7 @@
 import { RegisterFormType } from "./pages/Register";
 import { LoginFormType } from "./pages/Login";
 import { CreateTodoType } from "./components/CreateTodo";
+import { ModifiedTodoType } from "./components/Todo";
 
 const API_URL = "http://localhost:8000/api";
 
@@ -96,6 +97,30 @@ export const createTodo = async (todo: CreateTodoType) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(todo),
+  });
+
+  const responseBody = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+
+  return responseBody;
+};
+
+export const updateTodo = async (todo: ModifiedTodoType) => {
+  const { id, title, description, done } = todo;
+  const response = await fetch(`${API_URL}/todos/${id}`, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      title,
+      description,
+      done,
+    }),
   });
 
   const responseBody = await response.json();
