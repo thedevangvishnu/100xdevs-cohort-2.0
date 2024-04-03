@@ -24,6 +24,4 @@ export default async function Home() {
       </div>
     </div>
   );
-
-  return <h1>Home page</h1>;
 }
