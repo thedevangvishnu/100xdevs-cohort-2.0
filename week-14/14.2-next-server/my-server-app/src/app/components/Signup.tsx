@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import LabelledInput from "./LabelledInput";
 
 function SignupComponent() {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -24,10 +25,19 @@ function SignupComponent() {
             <div className="pt-2">
               <LabelledInput
                 onChange={(e) => {
-                  setUsername(e.target.value);
+                  setName(e.target.value);
                 }}
-                value={username}
-                label="Username"
+                value={name}
+                label="Name"
+                placeholder="harkirat@gmail.com"
+              />
+              <LabelledInput
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                value={email}
+                label="Email"
+                type="email"
                 placeholder="harkirat@gmail.com"
               />
               <LabelledInput
@@ -42,7 +52,8 @@ function SignupComponent() {
               <button
                 onClick={async () => {
                   await axios.post("http://localhost:3000/api/user", {
-                    username,
+                    name,
+                    email,
                     password,
                   });
                   router.push("/");
