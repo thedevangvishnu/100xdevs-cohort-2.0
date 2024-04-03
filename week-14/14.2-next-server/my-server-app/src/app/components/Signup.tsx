@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import LabelledInput from "./LabelledInput";
 
-export default function Signup() {
+function SignupComponent() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -36,7 +36,7 @@ export default function Signup() {
                 }}
                 value={password}
                 label="Password"
-                type={"password"}
+                type="password"
                 placeholder="123456"
               />
               <button
@@ -59,3 +59,5 @@ export default function Signup() {
     </div>
   );
 }
+
+export default SignupComponent;
