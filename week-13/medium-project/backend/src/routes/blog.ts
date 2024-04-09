@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { verify } from "hono/jwt";
 
 export const blogRouter = new Hono<{
   Bindings: {
@@ -11,6 +12,25 @@ export const blogRouter = new Hono<{
     userId: string;
   };
 }>();
+
+blogRouter.use(async (c, next) => {
+  const token = c.req.header("Authorization");
+
+  if (!token) {
+    c.status(401);
+    return c.json({ message: "Unauthorized!" });
+  }
+
+  try {
+    const payload = await verify(token, c.env.JWT_SECRET);
+    const userId = payload.userId;
+    c.set("userId", userId);
+    await next();
+  } catch (error) {
+    c.status(401);
+    return c.json({ message: "Unauthorized!" });
+  }
+});
 
 blogRouter.post("/", async (c) => {
   const userId = c.get("userId");
@@ -55,6 +75,8 @@ blogRouter.put("/:id", async (c) => {
         content: body.content,
       },
     });
+
+    return c.json({ message: "Update successfull!" });
   } catch (error) {
     c.status(500);
     return c.json({ message: "Something went wrong!" });
@@ -91,6 +113,11 @@ blogRouter.get("/:id", async (c) => {
         id: blogId,
       },
     });
+
+    if (!blog) {
+      c.status(404);
+      return c.json({ message: "Not found" });
+    }
 
     c.status(200);
     return c.json({ message: "Found blog with id", blog });
