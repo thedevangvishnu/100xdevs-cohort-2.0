@@ -69,11 +69,11 @@ export const LoginForm = () => {
                     <Input
                       {...field}
                       type="email"
-                      placeholder="abc@example.com"
+                      placeholder="josh_brown@gmail.com"
                       disabled={isPending}
                     />
                   </FormControl>
-                  <div className="h-[12px] text-right">
+                  <div className="h-[10px] text-right text-xs">
                     <FormMessage />
                   </div>
                 </FormItem>
@@ -94,7 +94,7 @@ export const LoginForm = () => {
                       disabled={isPending}
                     />
                   </FormControl>
-                  <div className="h-[12px] text-right">
+                  <div className="h-[10px] text-right text-xs">
                     <FormMessage />
                   </div>
                 </FormItem>

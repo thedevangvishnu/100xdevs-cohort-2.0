@@ -17,8 +17,14 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import { useTransition, useState } from "react";
+import { register } from "@/app/actions/register";
 
 export const RegisterForm = () => {
+  const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
   const form = useForm<RegisterFormType>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -28,8 +34,16 @@ export const RegisterForm = () => {
     },
   });
 
-  const onFormSubmit = (values: RegisterFormType) => {
-    console.log(values);
+  const onFormSubmit = async (values: RegisterFormType) => {
+    setError("");
+    setSuccess("");
+
+    startTransition(() => {
+      register(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
   };
 
   return (
@@ -54,9 +68,14 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="Josh Brown" {...field} />
+                    <Input
+                      type="text"
+                      placeholder="Josh Brown"
+                      {...field}
+                      disabled={isPending}
+                    />
                   </FormControl>
-                  <div className="h-[12px]  text-right">
+                  <div className="h-[10px] text-right text-xs">
                     <FormMessage />
                   </div>
                 </FormItem>
@@ -74,9 +93,10 @@ export const RegisterForm = () => {
                       type="email"
                       placeholder="josh_brown@gmail.com"
                       {...field}
+                      disabled={isPending}
                     />
                   </FormControl>
-                  <div className="h-[12px] text-right">
+                  <div className="h-[10px] text-right text-xs">
                     <FormMessage />
                   </div>
                 </FormItem>
@@ -90,9 +110,14 @@ export const RegisterForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="*********" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="*********"
+                      {...field}
+                      disabled={isPending}
+                    />
                   </FormControl>
-                  <div className="h-[12px] text-right ">
+                  <div className="h-[10px] text-right text-xs">
                     <FormMessage />
                   </div>
                 </FormItem>
@@ -100,8 +125,8 @@ export const RegisterForm = () => {
             />
           </div>
 
-          <FormError message="" />
-          <FormSuccess message="" />
+          <FormError message={error} />
+          <FormSuccess message={success} />
 
           <Button type="submit" size="lg" className="w-full text-base ">
             Sign up
