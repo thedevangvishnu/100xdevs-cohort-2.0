@@ -1,55 +1,43 @@
 "use client";
 
 import { CardWrapper } from "./card-wrapper";
+
+import { RegisterFormType, RegisterSchema } from "@/schemas";
 import { useForm } from "react-hook-form";
-import { LoginFormType, LoginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
-  FormControl,
-  FormMessage,
   FormLabel,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+  FormMessage,
+} from "../ui/form";
+import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { login } from "@/app/actions/login";
-import { useState, useTransition } from "react";
 
-export const LoginForm = () => {
-  const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
-
-  const form = useForm<LoginFormType>({
-    resolver: zodResolver(LoginSchema),
+export const RegisterForm = () => {
+  const form = useForm<RegisterFormType>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
   });
 
-  const onFormSubmit = (values: LoginFormType) => {
-    setError("");
-    setSuccess("");
-
-    startTransition(() => {
-      login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
-      });
-    });
+  const onFormSubmit = (values: RegisterFormType) => {
+    console.log(values);
   };
 
   return (
     <CardWrapper
-      title="Login"
-      description="Welcome back"
-      backButtonLabel="Don't have an account? Sign up"
-      backButtonHref="/auth/register"
+      title="Register"
+      description="Create a new account"
+      backButtonHref="/auth/login"
+      backButtonLabel="Already have an account? Sign in"
       showSocial
     >
       <Form {...form}>
@@ -58,7 +46,23 @@ export const LoginForm = () => {
           onSubmit={form.handleSubmit(onFormSubmit)}
           className="space-y-4"
         >
-          <div className="flex flex-col ">
+          <div className="flex flex-col">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input type="text" placeholder="Josh Brown" {...field} />
+                  </FormControl>
+                  <div className="h-[12px]  text-right">
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="email"
@@ -67,10 +71,9 @@ export const LoginForm = () => {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      {...field}
                       type="email"
-                      placeholder="abc@example.com"
-                      disabled={isPending}
+                      placeholder="josh_brown@gmail.com"
+                      {...field}
                     />
                   </FormControl>
                   <div className="h-[12px] text-right">
@@ -87,14 +90,9 @@ export const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="******"
-                      disabled={isPending}
-                    />
+                    <Input type="password" placeholder="*********" {...field} />
                   </FormControl>
-                  <div className="h-[12px] text-right">
+                  <div className="h-[12px] text-right ">
                     <FormMessage />
                   </div>
                 </FormItem>
@@ -102,11 +100,11 @@ export const LoginForm = () => {
             />
           </div>
 
-          <FormError message={error} />
-          <FormSuccess message={success} />
+          <FormError message="" />
+          <FormSuccess message="" />
 
-          <Button type="submit" size="lg" className="w-full text-base">
-            Login
+          <Button type="submit" size="lg" className="w-full text-base ">
+            Sign up
           </Button>
         </form>
       </Form>
