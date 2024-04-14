@@ -1,4 +1,5 @@
 import { RegisterFormType, RegisterSchema } from "@/schemas";
+import { db } from "@/lib/db";
 
 export const register = async (values: RegisterFormType) => {
   const validatedFields = RegisterSchema.safeParse(values);
