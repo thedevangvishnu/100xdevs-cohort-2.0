@@ -15,6 +15,15 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     error: "/auth/error",
   },
   callbacks: {
+    async signIn({ user, account }) {
+      // OAuth users, in this app, will already be verified. So for users who sign in with credentials, block them if their email is not verified
+      if (account?.provider !== "credentials") return true;
+
+      const existingUser = await getUserById(user.id as string);
+      if (!existingUser?.emailVerified) return false;
+
+      return true;
+    },
     async jwt({ token }) {
       if (!token.sub) return token;
 

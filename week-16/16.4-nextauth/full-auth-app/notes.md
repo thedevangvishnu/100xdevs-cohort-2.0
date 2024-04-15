@@ -66,4 +66,51 @@
       - async session({token, session})
       - might also have to extend types in module `next-auth`
 
-    - use linkAccount() to link social provider account to a user
+  - Add providers (Google, GitHub, etc)
+
+    - get clientId and clientSecret for each of these providers
+    - add these providers and their config options
+    - call these from client component using {signIn} from "next-auth/react"
+
+  - Event in `NextAuth()`
+
+    - use `linkAccount()` to turn emailVerified to new Date() once the account has been linked
+
+  - Handle error
+
+    - global error using an error page for authentication error
+    - error handling for same email, different providers.
+
+- Verify Email functionality
+
+  - Create new model for VerificationToken
+
+  - Create database functions to get token from this table by email and id
+
+    - getVerificationTokenByEmail()
+    - getVerificationTokenByToken()
+
+  - Create utility function for generating new token.
+
+    - generateTokenByEmail()
+    - build this function in a way that before generating a new token, it check whether a token is already present for a particular email, then it should delete that token for that email and then generate a new one.
+
+  - Use this generateTokenByEmail() inside register server-action to generate a new token for a new user. Also, if this new user hasn't verified the email and tries to login with the same non-verified email, generate the token again and send it.
+
+    - create fallback logic for restricting non-verified user to sign in inside the callback in `NextAuth()` using the `async signIn({user, account})`
+
+  - Use Resend
+
+    - Create a Resend account. Add apiKey to .env
+
+    - Install resend in the project
+
+      - npm i resend
+
+    - Configure resend and send email inside a new libs file for resend
+
+      - create an instance of Resend
+      - create a wrapper funtion that uses `resend.emails.send()`
+
+    - Create a new route and render a component that is going to show as soon as user is going to click the link in the confirmation email.
+      - create server action that can be called inside the component, which should validate the token, the email of user for that token (if the token exists), then updates the emailVerified field in the db and then deletes the token.
