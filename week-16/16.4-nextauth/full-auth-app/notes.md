@@ -57,3 +57,5 @@
   - Use signIn and signOut inside server-components or server-actions
 
   - Extend session information using callbacks in `NextAuth()`
+    - async jwt({token, user, profile})
+    - async session({token, session})
