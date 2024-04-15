@@ -31,4 +31,6 @@ export const login = async (values: LoginFormType) => {
   } else {
     return { error: "Invalid fields!" };
   }
+
+  // Todo: return success after 2FA
 };
