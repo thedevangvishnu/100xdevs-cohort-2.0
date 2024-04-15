@@ -37,6 +37,8 @@
     - npm i @auth/prisma-adapter
     - Create the prisma singleton instance
 
+  - Add AUTH_SECRET in .env file for NextAuth to use
+
   - Setting up next-auth config:
 
     - create a base authConfig (containing the providers and their respective strategies) and use them:
@@ -56,6 +58,12 @@
 
   - Use signIn and signOut inside server-components or server-actions
 
-  - Extend session information using callbacks in `NextAuth()`
-    - async jwt({token, user, profile})
-    - async session({token, session})
+  - Callbacks in `NextAuth()`
+
+    - Extend session information
+
+      - async jwt({token, user, profile})
+      - async session({token, session})
+      - might also have to extend types in module `next-auth`
+
+    - use linkAccount() to link social provider account to a user
