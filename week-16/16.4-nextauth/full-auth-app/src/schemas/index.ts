@@ -17,5 +17,12 @@ export const RegisterSchema = z.object({
     .min(6, { message: "Password of 6 or more chars is needed!" }),
 });
 
+export const ResetSchema = z.object({
+  email: z.string().email({
+    message: "Email is required!",
+  }),
+});
+
 export type LoginFormType = z.infer<typeof LoginSchema>;
 export type RegisterFormType = z.infer<typeof RegisterSchema>;
+export type ResetFormType = z.infer<typeof ResetSchema>;

@@ -9,7 +9,6 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 
 const NewVerificationForm = () => {
-  const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
 
@@ -24,7 +23,9 @@ const NewVerificationForm = () => {
           setError(data.error);
           setSuccess(data.success);
         })
-        .catch(() => {});
+        .catch(() => {
+          setError("Something went wrong!");
+        });
     } else {
       setError("Missing token!");
       return;

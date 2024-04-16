@@ -93,11 +93,12 @@
   - Create utility function for generating new token.
 
     - generateTokenByEmail()
+    - use uuid package to generate random unique tokens
     - build this function in a way that before generating a new token, it check whether a token is already present for a particular email, then it should delete that token for that email and then generate a new one.
 
   - Use this generateTokenByEmail() inside register server-action to generate a new token for a new user. Also, if this new user hasn't verified the email and tries to login with the same non-verified email, generate the token again and send it.
 
-    - create fallback logic for restricting non-verified user to sign in inside the callback in `NextAuth()` using the `async signIn({user, account})`
+    - create fallback logic for restricting non-verified user to sign in inside the callback using the `async signIn({user, account})` in `NextAuth()`.
 
   - Use Resend
 
@@ -113,4 +114,9 @@
       - create a wrapper funtion that uses `resend.emails.send()`
 
     - Create a new route and render a component that is going to show as soon as user is going to click the link in the confirmation email.
+
       - create server action that can be called inside the component, which should validate the token, the email of user for that token (if the token exists), then updates the emailVerified field in the db and then deletes the token.
+
+      - use `react-spinners` package to show loaders
+
+- Reset Password functionality
