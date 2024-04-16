@@ -23,6 +23,16 @@ export const ResetSchema = z.object({
   }),
 });
 
+export const NewPasswordSchema = z.object({
+  password: z.string().min(6, {
+    message: "Password of 6 or more chars is needed!",
+  }),
+  confirmPassword: z.string().min(6, {
+    message: "Password of 6 or more chars is needed!",
+  }),
+});
+
 export type LoginFormType = z.infer<typeof LoginSchema>;
 export type RegisterFormType = z.infer<typeof RegisterSchema>;
 export type ResetFormType = z.infer<typeof ResetSchema>;
+export type NewPasswordFormType = z.infer<typeof NewPasswordSchema>;
