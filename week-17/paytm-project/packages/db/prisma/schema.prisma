@@ -13,8 +13,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+enum AuthType {
+  Google
+  Github
+}
+
+
 model User {
-  id      String    @id @default(cuid())
-  name    String?
-  email   String    @unique
+  id            String        @id @default(cuid())
+  name          String?
+  number        Int           @unique
+  password      String
+  image         String?
+
+  @@map("users")
+}
+
+
+model Merchant {
+  id            String        @id @default(cuid())
+  name          String?
+  email         String        @unique
+  image         String?
+  authType      AuthType      @map("auth_type")
+  
+  @@map("merchants")
 }
