@@ -1,11 +1,13 @@
 "use client";
 
-import { FaUser } from "react-icons/fa6";
+import { FaU, FaUser } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 
-import { AuthButton } from "./auth-button";
-import { AuthCard } from "./auth-card";
+import { AuthButton } from "./auth-form/auth-button";
+import { AuthCard } from "./auth-form/auth-card";
+import { FormError } from "./auth-form/form-error";
+import { FormField } from "./auth-form/form-field";
 
 export const RegisterForm = () => {
   return (
@@ -17,56 +19,29 @@ export const RegisterForm = () => {
     >
       <div className="w-[300px]">
         <form action="" className="w-full flex flex-col px-3 md:px-0">
-          <div className="flex flex-col gap-2">
-            <div className="w-full flex items-center gap-2 border-b-2 border-slate-400 pb-2">
-              <FaUser className="text-slate-500" />
-              <input
-                type="text"
-                placeholder="Your name"
-                className="w-full bg-transparent border-none outline-none text-white"
-              />
-            </div>
-            {/* error */}
-            <div className="h-12 self-end">
-              <p className="text-rose-500 text-xs italic text-right">
-                This field is required
-              </p>
-            </div>
-          </div>
+          <FormField
+            icon={FaUser}
+            inputType="text"
+            inputPlaceholder="Name"
+            hasError
+            errorMessage="This field is required!"
+          />
 
-          <div className="flex flex-col gap-2">
-            <div className="w-full flex items-center gap-2 border-b-2 border-slate-400 pb-2">
-              <MdEmail className="text-slate-500 text-xl" />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full bg-transparent border-none outline-none text-white"
-              />
-            </div>
-            {/* error */}
-            <div className="h-12 self-end">
-              <p className="text-rose-500 text-xs italic text-right">
-                This field is required
-              </p>
-            </div>
-          </div>
+          <FormField
+            icon={MdEmail}
+            inputType="email"
+            inputPlaceholder="Email"
+            hasError
+            errorMessage="This field is required!"
+          />
 
-          <div className="flex flex-col gap-2">
-            <div className="w-full flex items-center gap-2 border-b-2 border-slate-400 pb-2">
-              <FaLock className="text-slate-500" />
-              <input
-                type="password"
-                placeholder="Password"
-                className="w-full bg-transparent border-none outline-none text-white"
-              />
-            </div>
-            {/* error */}
-            <div className="h-12 self-end">
-              <p className="text-rose-500 text-xs italic text-right">
-                This field is required
-              </p>
-            </div>
-          </div>
+          <FormField
+            icon={FaLock}
+            inputType="password"
+            inputPlaceholder="Password"
+            hasError
+            errorMessage="This field is required!"
+          />
 
           <AuthButton label="Sign up" onClick={() => {}} />
         </form>
