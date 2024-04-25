@@ -10,6 +10,6 @@ export const authHandler = NextAuth({
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
   pages: {
-    signIn: "/auth/signIn",
+    signIn: "/auth/login",
   },
 });

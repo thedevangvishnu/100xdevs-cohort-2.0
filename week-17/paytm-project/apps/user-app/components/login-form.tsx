@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 
-import { FaUser } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 
@@ -11,22 +10,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AuthButton } from "./auth-form/auth-button";
 import { AuthCard } from "./auth-form/auth-card";
 import { FormField } from "./auth-form/form-field";
-import { RegisterFormType, RegisterSchema } from "../schemas";
+import { LoginFormType, LoginSchema } from "../schemas";
 
 import { useMutation } from "react-query";
 import * as requests from "../hooks/requests";
 import toast from "react-hot-toast";
 import { MyToaster } from "./my-toaster";
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
   const router = useRouter();
 
-  const { mutate, isLoading } = useMutation(requests.register, {
+  const { mutate, isLoading } = useMutation(requests.login, {
     onSuccess: (data) => {
-      console.log(data);
       toast.success(data.success);
       setTimeout(() => {
-        router.push("/auth/login");
+        router.push("/");
       }, 1000);
     },
     onError: (e: Error) => {
@@ -34,25 +32,24 @@ export const RegisterForm = () => {
     },
   });
 
-  const form = useForm<RegisterFormType>({
-    resolver: zodResolver(RegisterSchema),
+  const form = useForm<LoginFormType>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
   });
 
-  const onFormSubmit = async (values: RegisterFormType) => {
+  const onFormSubmit = async (values: LoginFormType) => {
     mutate(values);
   };
 
   return (
     <AuthCard
-      title="Register"
-      description="Welcome! Create a new account."
-      secondaryActionLabel="Already have an account? Sign in"
-      secondaryActionLink="/auth/login"
+      title="Login"
+      description="Welcome back! Enter credentials."
+      secondaryActionLabel="Don't have an account? Sign up"
+      secondaryActionLink="/auth/register"
     >
       <div className="w-[300px]">
         <FormProvider {...form}>
@@ -61,14 +58,6 @@ export const RegisterForm = () => {
             className="w-full flex flex-col px-3 md:px-0"
             onSubmit={form.handleSubmit(onFormSubmit)}
           >
-            <FormField
-              icon={FaUser}
-              inputName="name"
-              inputType="text"
-              inputPlaceholder="Name"
-              isLoading={isLoading}
-            />
-
             <FormField
               icon={MdEmail}
               inputName="email"
@@ -85,7 +74,7 @@ export const RegisterForm = () => {
               isLoading={isLoading}
             />
 
-            <AuthButton label="Sign up" type="submit" isLoading={isLoading} />
+            <AuthButton label="Sign in" type="submit" isLoading={isLoading} />
           </form>
         </FormProvider>
       </div>
