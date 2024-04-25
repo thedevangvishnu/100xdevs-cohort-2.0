@@ -23,7 +23,7 @@ enum AuthType {
 model User {
   id            String        @id @default(cuid())
   name          String?
-  number        Int           @unique
+  email         String           @unique
   password      String
   image         String?
 

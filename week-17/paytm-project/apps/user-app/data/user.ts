@@ -4,10 +4,10 @@ import { PrismaClient } from "@repo/db/client";
 
 const db = new PrismaClient();
 
-export const getUserByNumber = async (number: number) => {
+export const getUserByEmail = async (email: string) => {
   try {
     const user = await db.user.findFirst({
-      where: { number },
+      where: { email },
     });
 
     if (!user) return null;
@@ -24,6 +24,26 @@ export const getUserById = async (id: string) => {
     });
 
     if (!user) return null;
+    return user;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const createNewUser = async (
+  name: string,
+  email: string,
+  password: string
+) => {
+  try {
+    const user = await db.user.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+
     return user;
   } catch (error) {
     return null;

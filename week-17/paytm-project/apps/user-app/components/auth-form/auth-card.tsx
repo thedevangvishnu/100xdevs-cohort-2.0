@@ -1,3 +1,5 @@
+"use client";
+
 import { SecondaryAction } from "./secondary-action";
 
 interface AuthCardProps {
