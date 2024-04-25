@@ -10,6 +10,7 @@ interface FormFieldProps {
   inputName: string;
   inputType: string;
   inputPlaceholder: string;
+  isLoading: boolean;
 }
 
 export const FormField = ({
@@ -18,6 +19,7 @@ export const FormField = ({
   inputName,
   inputType,
   inputPlaceholder,
+  isLoading,
 }: FormFieldProps) => {
   const {
     register,
@@ -35,6 +37,7 @@ export const FormField = ({
         <input
           type={inputType}
           placeholder={inputPlaceholder}
+          disabled={isLoading}
           className="w-full bg-transparent border-none outline-none text-white"
           {...register(inputName, { required: true })}
         />

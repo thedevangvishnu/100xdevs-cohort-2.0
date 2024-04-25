@@ -2,6 +2,6 @@
 
 import { RecoilRoot } from "recoil";
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
+export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   return <RecoilRoot>{children}</RecoilRoot>;
 };
